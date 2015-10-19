@@ -1,0 +1,84 @@
+package com.abhishek;
+
+public class MergeTwoLinkeLists{ 
+	private Node head; 
+	private static class Node {
+		private int value; 
+		private Node next; 
+		Node(int value) { 
+			this.value = value; 
+			} 
+		} 
+	public void addToTheLast(Node node) { 
+		if (head == null) {
+			head = node; 
+		} 
+		else { 
+			Node temp = head;
+			while (temp.next != null) 
+				temp = temp.next; 
+			temp.next = node; 
+			} 
+		} 
+	public  static void printList(Node head) { 
+		Node temp = head; 
+		while (temp != null) { 
+			System.out.format("%d ", temp.value); 
+			temp = temp.next; 
+			} 
+		System.out.println(); 
+		} 
+	
+	public static void alterMerge(Node a,Node b){
+		Node temp = a;
+		
+		while(a != null && b!=null){
+			Node a1= a.next;
+			Node b1=b.next;
+			
+			a.next = b;
+			b.next = a1;
+			a = a1;
+			b = b1;
+		}
+			System.out.println("\nAlternate Mergred List");
+			printList(temp);
+			
+			System.out.println("\nRemaining Second List");
+			printList(b);
+		
+		
+	}
+	
+	public static void main(String[] args) { 
+		MergeTwoLinkeLists list1 = new MergeTwoLinkeLists(); 
+		// Creating a linked list 
+		Node head1= new Node(1);
+		list1.addToTheLast(head1); 
+		list1.addToTheLast(new Node(2)); 
+		list1.addToTheLast(new Node(3)); 
+		list1.addToTheLast(new Node(4)); 
+		list1.addToTheLast(new Node(5)); 
+		list1.printList(head1); 
+		
+		
+		MergeTwoLinkeLists list2 = new MergeTwoLinkeLists(); 
+		// Creating a linked list 
+		Node head2= new Node(10);
+		list2.addToTheLast(head2); 
+		list2.addToTheLast(new Node(20)); 
+		list2.addToTheLast(new Node(30)); 
+		list2.addToTheLast(new Node(40)); 
+		list2.addToTheLast(new Node(50)); 
+		list2.addToTheLast(new Node(60)); 
+		list2.addToTheLast(new Node(70)); 
+		list2.addToTheLast(new Node(80)); 
+		list2.printList(head2); 
+		
+		alterMerge(head1,head2);
+		
+		
+		
+		} 
+}
+
