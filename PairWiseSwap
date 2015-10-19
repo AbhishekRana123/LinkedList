@@ -1,0 +1,82 @@
+
+package com.abhishek;
+
+public class pairWiseSwap{ 
+	private Node head; 
+	private static class Node {
+		private int value; 
+		private Node next; 
+		Node(int value) { 
+			this.value = value; 
+			} 
+		} 
+	public void addToTheLast(Node node) { 
+		if (head == null) {
+			head = node; 
+		} 
+		else { 
+			Node temp = head;
+			while (temp.next != null) 
+				temp = temp.next; 
+			temp.next = node; 
+			} 
+		} 
+	public  static void printList(Node head) { 
+		Node temp = head; 
+		while (temp != null) { 
+			System.out.format("%d ", temp.value); 
+			temp = temp.next; 
+			} 
+		System.out.println(); 
+		} 
+	
+	public static Node swapPairs(Node head) {
+	      if(head==null) return null; 
+	      if(head.next==null) return head; 
+	      Node previous=null; 
+	      Node current=head; 
+	      Node runner=head.next; 
+	      while(runner!=null && runner!=current)
+	      {
+	        current.next=runner.next; 
+	        runner.next=current; 
+	        if(previous==null)
+	        {
+	          previous=runner; 
+	          head=previous; 
+	          previous=previous.next; 
+	        }else
+	        {
+	          previous.next=runner; 
+	          previous=previous.next.next; 
+	        }
+	        current=current.next;
+	        if(current==null) break; 
+	        runner=runner.next.next.next; 
+	         
+	      }
+	      return head; 
+	    }
+	
+	
+	public static void main(String[] args) { 
+		pairWiseSwap list1 = new pairWiseSwap(); 
+		// Creating a linked list 
+		Node head1= new Node(1);
+		list1.addToTheLast(head1); 
+		list1.addToTheLast(new Node(2)); 
+		list1.addToTheLast(new Node(3)); 
+		list1.addToTheLast(new Node(4)); 
+		list1.addToTheLast(new Node(5)); 
+		
+		System.out.println("Before swapping ..");
+		list1.printList(head1); 
+		
+		Node AfterSwapNode = list1.swapPairs(head1);
+		list1.printList(AfterSwapNode);
+		
+				
+		
+		} 
+}
+
